@@ -289,19 +289,19 @@ class XmlNode
 
 	/// Check to see if this node is a CData node.
 	final bool isCData() {
-		if (cast(CData)this) return true;
+		if (cast(CData)this) { return true; }
 		return false;
 	}
 
 	/// Check to see if this node is a XmlPI node.
 	final bool isXmlPI() {
-		if (cast(XmlPI)this) return true;
+		if (cast(XmlPI)this) { return true; }
 		return false;
 	}
 
 	/// Check to see if this node is a XmlComment node.
 	final bool isXmlComment() {
-		if (cast(XmlComment)this) return true;
+		if (cast(XmlComment)this) { return true; }
 		return false;
 	}
 
@@ -1471,13 +1471,13 @@ string xmlDecode(string src) {
 	src = replace(src, "&apos;", "'");
 	src = replace(src, "&quot;",  "\"");
 	// take care of decimal character entities
-	src = regrep(src,"&#\\d{1,8};",(string m) {
+	src = regrep(src,"&#\\d{1,8};",delegate string(string m) {
 		auto cnum = m[2..$-1];
 		dchar dnum = cast(dchar)atoi(cnum);
 		return quickUTF8(dnum);
 	});
 	// take care of hex character entities
-	src = regrep(src,"&#[xX][0-9a-fA-F]{1,8};",(string m) {
+	src = regrep(src,"&#[xX][0-9a-fA-F]{1,8};",delegate string(string m) {
 		auto cnum = m[3..$-1];
 		dchar dnum = hex2dchar(cnum);
 		return quickUTF8(dnum);
