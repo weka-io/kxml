@@ -41,6 +41,7 @@
 //	add <?xml ?> XmlPI to the beginning of xmldocuments
 
 module kxml.xml;
+@("notrace") void traceDisableCompileTimeInstrumentation();
 version(Tango) {
 	import tango.text.Util:isspace=isSpace,stripl=triml,strip=trim,stripr=trimr,find=locatePattern,split,replace=substitute;
 	import tango.text.convert.Integer:tostring=toString,atoi=toInt;
